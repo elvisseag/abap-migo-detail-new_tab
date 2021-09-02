@@ -3,7 +3,7 @@
 " INIT --------------------------------------------------------------------------"
 
 method IF_EX_MB_MIGO_BADI~INIT.
-  APPEND gf_class_id TO ct_init. "+@ES 20200825
+  APPEND gf_class_id TO ct_init.
 endmethod.
 
 
@@ -12,7 +12,6 @@ endmethod.
 
 METHOD if_ex_mb_migo_badi~pbo_detail.
 
-  "{ +@ES 20210825
   DATA: lwa_extdata   TYPE zst_mseg_presu,
         ls_idmemo(50) TYPE c.
 
@@ -41,7 +40,6 @@ METHOD if_ex_mb_migo_badi~pbo_detail.
     ENDIF.
 
   ENDIF.
-  "} +@ES 20210825
 
 ENDMETHOD.
 
@@ -50,7 +48,7 @@ ENDMETHOD.
 " PAI_DETAIL --------------------------------------------------------------------------"
 
 method IF_EX_MB_MIGO_BADI~PAI_DETAIL.
-  e_force_change = 'X'. "+@ES 20210825
+  e_force_change = 'X'.
 endmethod.
 
 
@@ -60,7 +58,6 @@ endmethod.
 
 METHOD if_ex_mb_migo_badi~line_modify.
 
-  "{ +@ES20210825
   DATA: lwa_extdata    TYPE zst_mseg_presu,
         lwa_mseg_presu TYPE ztbmm_mseg_presu,
         ls_bukrs       TYPE ekpo-bukrs,
@@ -115,7 +112,6 @@ METHOD if_ex_mb_migo_badi~line_modify.
 
     ENDIF.
   ENDIF.
-  "} +@ES20210825
 
 ENDMETHOD.
 
@@ -124,10 +120,10 @@ ENDMETHOD.
 " RESET --------------------------------------------------------------------------"
 
 method IF_EX_MB_MIGO_BADI~RESET.
-"{ +@ES 20210825
+
   REFRESH: gt_extdata.
   CLEAR: g_no_input, gs_exdata_header, g_cancel, g_line_id.
-"} +@ES 20210825
+
 endmethod.
 
 
@@ -135,7 +131,7 @@ endmethod.
 " POST_DOCUMENT --------------------------------------------------------------------------"
 
 METHOD if_ex_mb_migo_badi~post_document.
-  "{+@ES 20210825
+
   DATA: lwa_mseg_presu TYPE ztbmm_mseg_presu,
         ltd_mseg_presu TYPE TABLE OF ztbmm_mseg_presu,
         lwa_mseg       TYPE mseg,
@@ -153,7 +149,7 @@ METHOD if_ex_mb_migo_badi~post_document.
   IF ltd_mseg_presu[] IS NOT INITIAL.
     MODIFY ztbmm_mseg_presu FROM TABLE ltd_mseg_presu.
   ENDIF.
-  "}+@ES 20210825
+
 ENDMETHOD.
 
 
@@ -162,7 +158,6 @@ ENDMETHOD.
 
 METHOD if_ex_mb_migo_badi~check_item.
 
-  "{+@ES 20210825
   DATA: ltd_cod_presup TYPE STANDARD TABLE OF ztbmm_cod_presup,
         lwa_extdata    TYPE zst_mseg_presu,
         lwa_bapiret    TYPE bapiret2,
@@ -208,7 +203,6 @@ METHOD if_ex_mb_migo_badi~check_item.
     EXPORT xdata_cod_presup_t FROM gt_extdata TO MEMORY ID ls_idmemo.
   ENDIF.
 
-  "}+@ES 20210825
 ENDMETHOD.
 
 
@@ -217,7 +211,7 @@ ENDMETHOD.
 " MODE_SET --------------------------------------------------------------------------"
 
 METHOD if_ex_mb_migo_badi~mode_set.
-  "{+@ES 20210825
+
   CLEAR: g_no_input.
   IF i_action = 'A04'.
     g_no_input = 'X'.
@@ -226,5 +220,5 @@ METHOD if_ex_mb_migo_badi~mode_set.
   IF i_action = 'A03'.
     g_cancel = 'X'.
   ENDIF.
-  "}+@ES 20210825
+
 ENDMETHOD.
